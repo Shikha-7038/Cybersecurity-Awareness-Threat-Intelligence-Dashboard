@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cybersecurity Awareness &amp; Threat Intelligence Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0b1020;--card:#121a30;--line:#22305a;--tx:#e6ecff;--mut:#8fa0c9;--acc:#4cc9f0;--C:#ff4d6d;--H:#ff9f43;--M:#feca57;--L:#48dbfb;--I:#8395a7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,#1a2750 0,var(--bg) 60%);color:var(--tx);font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif}
+header{display:flex;gap:16px;align-items:center;padding:10px 20px;background:#0b1020ee;backdrop-filter:blur(8px);flex-wrap:wrap}
+h1{font-size:18px;margin:0;flex:1;min-width:260px}h1 span{color:var(--acc)}
+.hs{display:flex;gap:6px}input,select,button{background:#0e1630;color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:inherit}button{cursor:pointer}button:hover{border-color:var(--acc)}.hs input{width:260px}
+nav{display:flex;gap:4px;padding:0 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b1020f2;backdrop-filter:blur(8px);z-index:5;overflow-x:auto}
+nav button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:11px 14px;color:var(--mut);white-space:nowrap}nav button.on{color:var(--tx);border-color:var(--acc)}
+main{padding:16px 20px;max-width:1700px;margin:auto}.tab{display:none}.tab.on{display:block}
+.kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:12px}.kpi{background:linear-gradient(160deg,#16213f,var(--card));border:1px solid var(--line);border-radius:12px;padding:12px}.kpi b{display:block;font-size:26px}.kpi small{color:var(--mut)}
+.hier{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:12px}.hier div{border:1px dashed var(--line);border-radius:10px;padding:8px 12px;background:#0e1630}.hier b{font-size:18px;color:var(--acc)}.hier small{display:block;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-bottom:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}.stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h3{margin:0 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+.ch{height:240px;position:relative}table{width:100%;border-collapse:collapse;font-size:12.5px}th,td{padding:6px 8px;border-bottom:1px solid #1b2748;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--card)}
+.nw td,.nw th{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:250px}tr.row{cursor:pointer}tr.row:hover{background:#18244a}.scr{overflow:auto;max-height:560px}
+.b{padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;color:#0b1020}.CRITICAL{background:var(--C)}.HIGH{background:var(--H)}.MEDIUM{background:var(--M)}.LOW{background:var(--L)}.INFORMATIONAL{background:var(--I)}
+.tools{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}.feed{max-height:340px;overflow:auto;display:flex;flex-direction:column;gap:8px}.al{border:1px solid var(--line);border-radius:10px;padding:8px;background:#0e1630}.al small,.note{color:var(--mut);font-size:12px}.al button{padding:2px 8px;font-size:11px;margin:4px 4px 0 0}
+.bar{height:8px;background:#0b1020;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),#7b2ff7)}.li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin-bottom:9px}.li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:9}#modal .card{width:min(760px,94vw);max-height:88vh;overflow:auto}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}.mods{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.mx{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.mx>div{border:1px solid var(--line);border-radius:10px;padding:8px;background:#0e1630}.chip{display:flex;justify-content:space-between;gap:6px;font-size:12px;padding:3px 6px;margin-top:4px;border-radius:6px;background:#1a2750}
+.samples button{padding:3px 9px;font-size:12px}ul{margin:4px 0;padding-left:18px}li{margin:3px 0}code{background:#0b1020;padding:1px 5px;border-radius:5px;color:var(--acc)}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(4,1fr)}.hier{grid-template-columns:repeat(2,1fr)}.mods{grid-template-columns:repeat(2,1fr)}.c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}}
+</style></head><body>
+<header><h1>🛡️ Cybersecurity Awareness &amp; <span>Threat Intelligence</span> Dashboard <small class="note">SYNTHETIC / DEMO DATA ONLY</small></h1>
+<div class="hs"><input id="q" placeholder="Search IOC: IP, domain, URL, hash, CVE" onkeydown="if(event.key==='Enter')headerSearch()"><button onclick="headerSearch()">Search</button></div></header>
+<nav id="nav"></nav>
+<main>
+
+<section class="tab" id="t-overview">
+ <div class="kpis" id="kpis"></div><div class="hier" id="hier"></div>
+ <div class="grid"><div class="card c8"><h3>Threats over time (30 days) — all vs high/critical</h3><div class="ch"><canvas id="trend"></canvas></div></div>
+  <div class="card c4"><h3>Threats by severity</h3><div class="ch"><canvas id="sev"></canvas></div></div></div>
+ <div class="grid"><div class="card c4"><h3>Top threat categories</h3><div class="ch"><canvas id="cat"></canvas></div></div>
+  <div class="card c4"><h3>IOC type distribution</h3><div class="ch"><canvas id="ioc"></canvas></div></div>
+  <div class="card c4"><h3>Top ATT&amp;CK tactics</h3><div class="ch"><canvas id="tac"></canvas></div></div></div>
+ <div class="grid"><div class="card c8"><h3>Highest-risk recent threats <span class="note">(click a row to investigate)</span></h3><div class="scr" style="max-height:340px"><table class="nw"><thead><tr><th>ID</th><th>Threat</th><th>Category</th><th>Indicator</th><th>Sev</th><th>Risk</th><th>Conf</th><th>Status</th></tr></thead><tbody id="ov_tb"></tbody></table></div></div>
+  <div class="card c4"><h3>Latest SOC alerts</h3><div class="feed" id="ov_feed"></div></div></div>
+ <div class="grid"><div class="card c4"><h3>Most observed indicators</h3><div id="topi"></div></div><div class="card c4"><h3>Top ATT&amp;CK techniques</h3><div id="tech"></div></div><div class="card c4"><h3>Activity by country / region</h3><div id="ctry"></div></div></div>
+</section>
+
+<section class="tab" id="t-threats">
+ <div class="grid"><div class="card c4"><h3>Risk score distribution</h3><div class="ch"><canvas id="risk"></canvas></div></div>
+  <div class="card c4"><h3>Confidence distribution</h3><div class="ch"><canvas id="conf"></canvas></div></div>
+  <div class="card c4"><h3>Intelligence sources &amp; reliability</h3><table><thead><tr><th>Source</th><th>Rel.</th><th>Records</th><th>Avg conf</th></tr></thead><tbody id="src"></tbody></table><p class="note">Reliability A = highly reliable … D = unknown. Confidence is about trust in the intel; risk is about potential impact.</p></div></div>
+ <div class="grid"><div class="card c12"><h3>Threat intelligence records</h3>
+  <div class="tools"><input id="f_q" placeholder="Filter text" oninput="resetT()"><select id="f_sev" onchange="resetT()"><option value="">All severities</option><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option><option>INFORMATIONAL</option></select>
+  <select id="f_cat" onchange="resetT()"><option value="">All categories</option></select><select id="f_st" onchange="resetT()"><option value="">All statuses</option><option>NEW</option><option>UNDER_REVIEW</option><option>MONITORING</option><option>CLOSED</option><option>FALSE_POSITIVE</option></select>
+  <select id="f_sort" onchange="resetT()"><option value="newest">Newest</option><option value="risk">Highest risk</option><option value="confidence">Highest confidence</option><option value="observed">Most observed</option></select></div>
+  <div class="scr"><table class="nw"><thead><tr><th>ID</th><th>Threat</th><th>Category</th><th>Type</th><th>Indicator</th><th>Source</th><th>Sev</th><th>Risk</th><th>Conf</th><th>Obs</th><th>Status</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="tools" style="margin:10px 0 0"><button onclick="loadT(true)">Load more</button><span class="note" id="tcount"></span></div></div></div>
+ <div class="grid"><div class="card c12"><h3>Top campaigns (synthetic clusters)</h3><table><thead><tr><th>Campaign</th><th>Category</th><th>Records</th><th>Observations</th><th>Max risk</th></tr></thead><tbody id="camp"></tbody></table></div></div>
+</section>
+
+<section class="tab" id="t-ioc">
+ <div class="grid"><div class="card c8"><h3>IOC lookup (database only — nothing is ever contacted)</h3>
+  <div class="tools"><input id="iq" style="flex:1;min-width:240px" placeholder="IP, domain, URL, hash or CVE" onkeydown="if(event.key==='Enter')lookup($('iq').value)"><button onclick="lookup($('iq').value)">Look up</button></div>
+  <div class="samples tools"><span class="note">Try:</span><button onclick="lookup('198.51.100.25')">198.51.100.25</button><button onclick="lookup('login-check.invalid')">login-check.invalid</button><button onclick="lookup('CVE-2099-10001')">CVE-2099-10001</button><button onclick="lookup('999.1.1.1')">999.1.1.1 (invalid)</button><button onclick="lookup('example.org')">example.org</button></div>
+  <div id="ioc_res" class="al" style="min-height:150px">Enter an indicator to see its risk, confidence, status and related threat record. Validation checks <b>syntax only</b>; a lookup tells you whether the indicator exists in the demo dataset.</div></div>
+  <div class="card c4"><h3>Supported indicator types</h3><table><thead><tr><th>Type</th><th>Example</th></tr></thead><tbody><tr><td>IP_ADDRESS</td><td>198.51.100.25</td></tr><tr><td>DOMAIN</td><td>login-check.example.com</td></tr><tr><td>URL</td><td>https://login.example.com/x</td></tr><tr><td>FILE_HASH</td><td>MD5 / SHA1 / SHA256</td></tr><tr><td>EMAIL_DOMAIN</td><td>noreply@example.org</td></tr><tr><td>CVE_ID</td><td>CVE-2099-10001</td></tr></tbody></table></div></div>
+ <div class="grid"><div class="card c4"><h3>IOC types in dataset</h3><div class="ch"><canvas id="ioc2"></canvas></div></div><div class="card c4"><h3>Most observed indicators</h3><div id="topi2"></div></div>
+  <div class="card c4"><h3>Safe handling rules</h3><ul><li>Never visit, ping or scan an indicator</li><li>Never run a file because of its hash</li><li>Use isolated analysis environments</li><li>High risk ≠ confirmed compromise</li><li>Correlation ≠ attribution</li><li>Record who validated what, and when</li></ul></div></div>
+ <div class="grid"><div class="card c12"><h3>Highest-risk indicators</h3><table class="nw"><thead><tr><th>Type</th><th>Indicator</th><th>Category</th><th>Risk</th><th>Conf</th><th>Obs</th><th>Status</th></tr></thead><tbody id="ioc_tb"></tbody></table></div></div>
+</section>
+
+<section class="tab" id="t-alerts">
+ <div class="grid"><div class="card c4"><h3>Alerts by type</h3><div class="ch"><canvas id="atype"></canvas></div></div><div class="card c4"><h3>Alerts by status</h3><div class="ch"><canvas id="astat"></canvas></div></div>
+  <div class="card c4"><h3>Alert fatigue reduction</h3><div id="funnel"></div><p class="note">Raw sightings are grouped into far fewer alerts. An alert is a prompt to investigate, not a confirmed incident.</p></div></div>
+ <div class="grid"><div class="card c12"><h3>SOC alert queue</h3><div class="tools"><select id="al_f" onchange="loadAlerts()"><option value="">All statuses</option><option>NEW</option><option>INVESTIGATING</option><option>MONITORING</option><option>RESOLVED</option><option>FALSE_POSITIVE</option></select><span class="note" id="al_n"></span></div>
+  <div class="scr"><table class="nw"><thead><tr><th>When</th><th>Alert type</th><th>Sev</th><th>Risk</th><th>Conf</th><th>Indicator</th><th>Obs</th><th>Description</th><th>Status</th></tr></thead><tbody id="al_tb"></tbody></table></div></div></div>
+</section>
+
+<section class="tab" id="t-vulns">
+ <div class="grid"><div class="card c3"><h3>By severity</h3><div class="ch"><canvas id="vsev"></canvas></div></div><div class="card c3"><h3>By exposure</h3><div class="ch"><canvas id="vexp"></canvas></div></div>
+  <div class="card c3"><h3>Patch availability</h3><div class="ch"><canvas id="vpatch"></canvas></div></div><div class="card c3"><h3>Summary</h3><div id="vsum"></div></div></div>
+ <div class="grid"><div class="card c6"><h3>Fix first — top 5 priorities</h3><div id="vtop"></div></div>
+  <div class="card c6"><h3>Priority formula</h3><table><thead><tr><th>Factor</th><th>Weight</th></tr></thead><tbody><tr><td>CVSS score (×10)</td><td>40%</td></tr><tr><td>Asset criticality (1–5)</td><td>25%</td></tr><tr><td>Exposure (internet / internal / isolated)</td><td>20%</td></tr><tr><td>Known exploitation (demo flag)</td><td>15%</td></tr><tr><td>No patch available</td><td>+5 points</td></tr></tbody></table><p class="note">CVSS alone is not enough: a 7.5 on an internet-facing critical asset can outrank a 9.8 on an isolated test box.</p></div></div>
+ <div class="grid"><div class="card c12"><h3>All synthetic vulnerabilities (CVE-2099-*)</h3><div class="scr"><table class="nw"><thead><tr><th>CVE</th><th>Product</th><th>Severity</th><th>CVSS</th><th>Asset crit.</th><th>Exposure</th><th>Exploitation (demo)</th><th>Patch</th><th>Priority</th></tr></thead><tbody id="vt"></tbody></table></div></div></div>
+</section>
+
+<section class="tab" id="t-attack">
+ <div class="grid"><div class="card c6"><h3>Threats by tactic</h3><div class="ch"><canvas id="tac2"></canvas></div></div><div class="card c6"><h3>Top techniques</h3><div id="tech2"></div></div></div>
+ <div class="grid"><div class="card c12"><h3>Tactic → technique matrix (from this dataset)</h3><div class="mx" id="mx"></div></div></div>
+ <div class="grid"><div class="card c6"><h3>Category → ATT&amp;CK mapping used</h3><table><thead><tr><th>Category</th><th>Tactic</th><th>Technique</th><th>ID</th></tr></thead><tbody id="mp"></tbody></table></div>
+  <div class="card c6"><h3>Mapping policy</h3><ul><li>Mapping is <b>conservative</b>: only when confidence ≥ 50</li><li>An indicator alone never proves a technique</li><li>Unmapped records show “insufficient evidence”</li><li>Malware indicators that are domains/IPs map to Command and Control</li><li>Verify IDs against <code>attack.mitre.org</code> before publishing</li></ul><p class="note">ATT&amp;CK describes adversary behaviour for defenders; it is used here only to organise detection and awareness work.</p></div></div>
+</section>
+
+<section class="tab" id="t-awareness">
+ <div class="grid"><div class="card c12"><h3>Awareness modules</h3><div class="mods" id="mods"></div></div></div>
+ <div class="grid"><div class="card c6"><h3>Do and don't</h3><table><thead><tr><th>Do ✅</th><th>Don't ❌</th></tr></thead><tbody><tr><td>Verify requests through a second channel</td><td>Click links in urgent unexpected messages</td></tr><tr><td>Use a password manager and MFA</td><td>Reuse one password everywhere</td></tr><tr><td>Report suspicious messages quickly</td><td>Hide a mistake or wait</td></tr><tr><td>Keep devices and apps updated</td><td>Postpone security updates</td></tr><tr><td>Keep tested offline backups</td><td>Rely on a single copy</td></tr><tr><td>Share the minimum personal data</td><td>Overshare on public profiles</td></tr></tbody></table></div>
+  <div class="card c6"><h3>Phishing red flags</h3><ul><li>Urgent or threatening language</li><li>Sender domain slightly different from the real one</li><li>Link text differs from the real destination</li><li>Unexpected attachment or QR code</li><li>Request for passwords, MFA codes or gift cards</li><li>Payment-detail changes by email only</li><li>Generic greeting, odd grammar or tone</li></ul></div></div>
+</section>
+
+<section class="tab" id="t-quiz">
+ <div class="grid"><div class="card c8" style="min-height:430px"><h3>Security awareness quiz</h3><div id="qz"></div></div>
+  <div class="stack c4"><div class="card"><h3>Awareness levels</h3><table><thead><tr><th>Score</th><th>Level</th></tr></thead><tbody><tr><td>0–40</td><td>Needs Improvement</td></tr><tr><td>41–60</td><td>Basic Awareness</td></tr><tr><td>61–80</td><td>Good Awareness</td></tr><tr><td>81–100</td><td>Strong Awareness</td></tr></tbody></table></div>
+  <div class="card"><h3>How it works</h3><ul><li>40 questions across 10 topics</li><li>Per-category scores and learning recommendations</li><li>Educational only — not a judgement of anyone</li><li>Answers are checked on the server</li></ul></div></div></div>
+</section>
+
+<section class="tab" id="t-about">
+ <div class="grid"><div class="card c6"><h3>Project summary</h3><ul><li>Defensive SOC-style dashboard plus awareness centre</li><li>Synthetic data only; reserved IPs and example domains</li><li>Never contacts indicators or runs files</li><li>Built for a course project and portfolio</li></ul></div>
+  <div class="card c6"><h3>Technology</h3><table><tbody><tr><td>Backend</td><td>Python, Flask</td></tr><tr><td>Database</td><td>SQLite</td></tr><tr><td>Frontend</td><td>HTML, CSS, JavaScript, Chart.js</td></tr><tr><td>Testing</td><td>unittest (49 tests)</td></tr></tbody></table></div></div>
+ <div class="grid"><div class="card c6"><h3>Risk score weights</h3><table><thead><tr><th>Factor</th><th>Weight</th></tr></thead><tbody><tr><td>Base severity</td><td>30%</td></tr><tr><td>Confidence</td><td>25%</td></tr><tr><td>Recency (14-day half-life)</td><td>15%</td></tr><tr><td>Observation frequency</td><td>10%</td></tr><tr><td>Source reliability</td><td>10%</td></tr><tr><td>Related indicators</td><td>10%</td></tr></tbody></table></div>
+  <div class="card c6"><h3>Ethics &amp; safety</h3><ul><li>Data is synthetic and labelled DEMO ONLY</li><li>No scanning, exploitation or malware</li><li>Input validation and HTML escaping</li><li>Write endpoints need an API key</li><li>Humans validate; the tool prioritises</li></ul><p class="note">Full documentation is in the <code>docs/</code> and <code>reports/</code> folders of the project.</p></div></div>
+</section>
+</main>
+<div id="modal" onclick="if(event.target===this)this.style.display='none'"><div class="card" id="mc"></div></div>
+<script>
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SC={CRITICAL:'#ff4d6d',HIGH:'#ff9f43',MEDIUM:'#feca57',LOW:'#48dbfb',INFORMATIONAL:'#8395a7'},PAL=['#4cc9f0','#7b2ff7','#f72585','#4361ee','#4895ef','#b5179e','#3a0ca3','#00f5d4','#ff9f43','#feca57'];
+Chart.defaults.color='#8fa0c9';Chart.defaults.borderColor='#22305a';Chart.defaults.maintainAspectRatio=false;
+const api=(u,o)=>fetch(u,o).then(r=>r.json());let KEY='',S=null,V=null;const badge=s=>`<span class="b ${esc(s)}">${esc(s)}</span>`,nice=s=>esc(String(s).replace(/_/g,' '));
+function chart(id,type,labels,data,colors,extra={}){const c=Chart.getChart(id);if(c)c.destroy();new Chart($(id),{type,data:{labels,datasets:[{data,backgroundColor:colors,borderColor:type==='line'?colors:'#121a30',fill:false,tension:.35,borderWidth:2}]},options:{plugins:{legend:{display:type==='doughnut',position:'right',labels:{boxWidth:10,font:{size:10}}}},...extra}})}
+const hbar=(id,o,cols=PAL)=>chart(id,'bar',Object.keys(o).map(x=>x.replace(/_/g,' ')),Object.values(o),cols,{indexAxis:'y',scales:{y:{ticks:{font:{size:10}}}}});
+function list(el,obj,fmt=v=>v){const m=Math.max(...Object.values(obj),1);$(el).innerHTML=Object.entries(obj).map(([k,v])=>`<div class="li"><span>${esc(k)}</span><b>${esc(fmt(v))}</b><div class="bar" style="grid-column:1/3"><i style="width:${100*v/m}%"></i></div></div>`).join('')}
+const TABS=[['overview','📊 Overview'],['threats','🧾 Threat Intelligence'],['ioc','🔎 IOC Search'],['alerts','🚨 Alerts'],['vulns','🩹 Vulnerabilities'],['attack','🗺️ ATT&CK'],['awareness','🎓 Awareness'],['quiz','📝 Quiz'],['about','ℹ️ About']];
+const done={};
+$('nav').innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" onclick="show('${k}')">${l}</button>`).join('');
+async function show(k){document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('on',e.id==='t-'+k));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===k));location.hash=k;
+ if(!S)await boot();if(!done[k]&&R[k]){done[k]=1;await R[k]()}}
+async function boot(){KEY=(await api('/api/demo-keys')).analyst;S=await api('/api/dashboard/stats')}
+const R={
+ async overview(){const k=S.kpis,K=[['Total threat records',k.total],['Critical',k.critical],['High',k.high],['Active indicators',k.active_indicators],['Open investigations',k.open_investigations],['Avg confidence',k.avg_confidence+'%'],['Vulnerabilities',k.vulnerabilities],['Open alerts',k.open_alerts]];
+  $('kpis').innerHTML=K.map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${esc(b)}</b></div>`).join('');
+  const h=S.hierarchy,H=[['Observations',h.observations,'raw sightings of an artifact'],['Indicators',h.indicators,'unique IPs, domains, hashes…'],['Alerts',h.alerts,'prompts to investigate'],['Threats',h.threats,'campaign-level clusters'],['Incidents',h.incidents,'critical items under investigation']];
+  $('hier').innerHTML=H.map(([a,b,c])=>`<div><b>${b.toLocaleString()}</b> ${a}<small>${c}</small></div>`).join('');
+  chart('trend','line',S.trend.labels.map(d=>d.slice(5)),S.trend.values,'#4cc9f0');const tr=Chart.getChart('trend');tr.data.datasets.push({data:S.trend.high,borderColor:'#ff4d6d',backgroundColor:'#ff4d6d',tension:.35,borderWidth:2});tr.update();
+  chart('sev','doughnut',Object.keys(S.severity),Object.values(S.severity),Object.keys(S.severity).map(x=>SC[x]));hbar('cat',S.category);chart('ioc','doughnut',Object.keys(S.ioc_types).map(x=>x.replace('_',' ')),Object.values(S.ioc_types),PAL);hbar('tac',S.tactics);
+  const t=await api('/api/threats?limit=12&sort=risk');$('ov_tb').innerHTML=t.map(trow(false)).join('');feed('ov_feed',S.recent_alerts);
+  $('topi').innerHTML=S.top_indicators.map(i=>`<div class="li"><span title="${esc(i.value)}">${esc(i.value)}</span><b>${i.obs}×</b><small class="note">${esc(i.type)} · max risk ${i.risk}</small></div>`).join('');list('tech',S.techniques);list('ctry',S.countries)},
+ async threats(){const b10=['0-9','10s','20s','30s','40s','50s','60s','70s','80s','90+'];chart('risk','bar',b10,S.risk_hist,'#f72585');chart('conf','bar',b10,S.conf_hist,'#4895ef');
+  $('src').innerHTML=S.sources.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.reliability)}</td><td>${s.records}</td><td>${s.avg_conf}%</td></tr>`).join('');
+  $('camp').innerHTML=S.campaigns.map(c=>`<tr><td>${esc(c.campaign_id)}</td><td>${nice(c.category)}</td><td>${c.records}</td><td>${c.obs}</td><td>${c.max_risk}</td></tr>`).join('');
+  $('f_cat').innerHTML+=Object.keys(S.category).map(c=>`<option value="${esc(c)}">${nice(c)}</option>`).join('');resetT()},
+ async ioc(){chart('ioc2','doughnut',Object.keys(S.ioc_types).map(x=>x.replace('_',' ')),Object.values(S.ioc_types),PAL);
+  $('topi2').innerHTML=S.top_indicators.map(i=>`<div class="li"><span title="${esc(i.value)}">${esc(i.value)}</span><b>${i.obs}×</b><div class="bar" style="grid-column:1/3"><i style="width:${Math.min(100,i.risk)}%"></i></div></div>`).join('');
+  const t=await api('/api/threats?limit=15&sort=risk');$('ioc_tb').innerHTML=t.map(x=>`<tr class="row" onclick="detail('${esc(x.threat_id)}')"><td>${esc(x.indicator_type)}</td><td>${esc(x.indicator_value)}</td><td>${nice(x.category)}</td><td>${x.risk_score}</td><td>${x.confidence_score}%</td><td>${x.observation_count}</td><td>${nice(x.status)}</td></tr>`).join('')},
+ async alerts(){hbar('atype',S.alert_types);chart('astat','doughnut',Object.keys(S.alert_status),Object.values(S.alert_status),PAL);const h=S.hierarchy;
+  $('funnel').innerHTML=[['Raw observations',h.observations],['Indicators',h.indicators],['Alerts after correlation',h.alerts],['Critical investigations',h.incidents]].map(([a,b],i)=>`<div class="li"><span>${a}</span><b>${b.toLocaleString()}</b><div class="bar" style="grid-column:1/3"><i style="width:${Math.max(3,100*b/h.observations)}%"></i></div></div>`).join('');loadAlerts()},
+ async vulns(){V=await api('/api/vulnerabilities');const cnt=f=>V.reduce((o,v)=>(o[f(v)]=(o[f(v)]||0)+1,o),{});
+  const sv=cnt(v=>v.severity);chart('vsev','bar',Object.keys(sv),Object.values(sv),Object.keys(sv).map(x=>SC[x]));const ex=cnt(v=>v.exposure);chart('vexp','doughnut',Object.keys(ex),Object.values(ex),PAL);
+  const pa=cnt(v=>v.patch_available?'Patch available':'No patch');chart('vpatch','doughnut',Object.keys(pa),Object.values(pa),['#48dbfb','#ff4d6d']);
+  const avg=(V.reduce((a,v)=>a+v.cvss_score,0)/V.length).toFixed(1);$('vsum').innerHTML=`<table><tbody><tr><td>Total CVEs</td><td><b>${V.length}</b></td></tr><tr><td>Average CVSS</td><td><b>${avg}</b></td></tr><tr><td>Exploited (demo)</td><td><b>${V.filter(v=>v.exploitation_status_demo==='exploited_in_demo').length}</b></td></tr><tr><td>Internet-facing</td><td><b>${ex.internet||0}</b></td></tr><tr><td>No patch</td><td><b>${V.filter(v=>!v.patch_available).length}</b></td></tr><tr><td>Priority ≥ 80</td><td><b>${V.filter(v=>v.priority_score>=80).length}</b></td></tr></tbody></table>`;
+  $('vtop').innerHTML=V.slice(0,5).map(v=>`<div class="li"><span><b>${esc(v.cve_id)}</b> · ${esc(v.product_category)} · CVSS ${v.cvss_score} · ${esc(v.exposure)}</span><b>${v.priority_score}</b><div class="bar" style="grid-column:1/3"><i style="width:${v.priority_score}%"></i></div></div>`).join('');
+  $('vt').innerHTML=V.map(v=>`<tr><td>${esc(v.cve_id)}</td><td>${esc(v.product_category)}</td><td>${badge(v.severity)}</td><td>${v.cvss_score}</td><td>${v.asset_criticality}/5</td><td>${esc(v.exposure)}</td><td>${nice(v.exploitation_status_demo)}</td><td>${v.patch_available?'✔':'✖'}</td><td><b>${v.priority_score}</b></td></tr>`).join('')},
+ async attack(){hbar('tac2',S.tactics);list('tech2',S.techniques);$('mx').innerHTML=Object.entries(S.matrix).map(([t,o])=>`<div><b>${esc(t)}</b>${Object.entries(o).map(([k,n])=>`<div class="chip"><span>${esc(k)}</span><b>${n}</b></div>`).join('')}</div>`).join('');
+  $('mp').innerHTML=[['Phishing','Initial Access','Phishing','T1566'],['Malware','Execution','User Execution','T1204'],['Ransomware','Impact','Data Encrypted for Impact','T1486'],['Credential theft','Credential Access','Credentials from Password Stores','T1555'],['Social engineering','Reconnaissance','Phishing for Information','T1598'],['Network threats','Discovery','Network Service Discovery','T1046'],['Web threats','Initial Access','Exploit Public-Facing Application','T1190'],['Data exposure','Exfiltration','Exfiltration Over Web Service','T1567'],['Account takeover risk','Initial Access','Valid Accounts','T1078'],['Vulnerability exploitation','Initial Access','Exploit Public-Facing Application','T1190']].map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')},
+ async awareness(){const m=await api('/api/awareness/modules');$('mods').innerHTML=m.map((x,i)=>`<div class="al"><small>Module ${i+1}</small><br><b>${esc(x.title)}</b><br><small>${esc(x.tip)}</small></div>`).join('')},
+ async quiz(){startQuiz()}};
+const trow=full=>x=>`<tr class="row" onclick="detail('${esc(x.threat_id)}')"><td>${esc(x.threat_id)}</td><td>${esc(x.threat_name)}</td><td>${nice(x.category)}</td>${full?`<td>${esc(x.indicator_type)}</td>`:''}<td title="${esc(x.indicator_value)}">${esc(x.indicator_value)}</td>${full?`<td>${esc(x.source_name)}</td>`:''}<td>${badge(x.severity)}</td><td>${x.risk_score}</td><td>${x.confidence_score}%</td>${full?`<td>${x.observation_count}</td>`:''}<td>${nice(x.status)}</td></tr>`;
+function feed(id,a){$(id).innerHTML=a.map(x=>`<div class="al">${badge(x.severity)} <b>${nice(x.alert_type)}</b> <small>· ${esc(x.status)}${x.observation_count>1?' · '+x.observation_count+' obs':''}</small><div>${esc(x.description)}</div><small>Risk ${x.risk_score} · Conf ${x.confidence_score}% · ${esc(x.indicator_value)}</small></div>`).join('')}
+let TOFF=0;const TL=40;function resetT(){TOFF=0;$('tb').innerHTML='';loadT(true)}
+async function loadT(more){const p=new URLSearchParams({limit:TL,offset:TOFF,sort:$('f_sort').value,severity:$('f_sev').value,category:$('f_cat').value,status:$('f_st').value,q:$('f_q').value});
+ const t=await api('/api/threats?'+p);$('tb').insertAdjacentHTML('beforeend',t.map(trow(true)).join(''));TOFF+=t.length;$('tcount').textContent=`Showing ${TOFF} records`+(t.length<TL?' (end of results)':'')}
+async function loadAlerts(){const st=$('al_f').value,a=await api('/api/alerts'+(st?'?status='+st:''));$('al_n').textContent=a.length+' alerts (highest risk first)';
+ $('al_tb').innerHTML=a.map(x=>`<tr><td>${esc(x.timestamp.slice(0,16).replace('T',' '))}</td><td>${nice(x.alert_type)}</td><td>${badge(x.severity)}</td><td>${x.risk_score}</td><td>${x.confidence_score}%</td><td>${esc(x.indicator_value)}</td><td>${x.observation_count}</td><td title="${esc(x.description)}">${esc(x.description)}</td><td><select onchange="setAlert(${x.alert_id},this.value)">${['NEW','INVESTIGATING','MONITORING','RESOLVED','FALSE_POSITIVE'].map(s=>`<option ${s===x.status?'selected':''}>${s}</option>`).join('')}</select></td></tr>`).join('')}
+async function setAlert(id,status){await api(`/api/alerts/${id}/status`,{method:'PUT',headers:{'Content-Type':'application/json','X-API-Key':KEY},body:JSON.stringify({status})})}
+async function headerSearch(){const v=$('q').value.trim();if(!v)return;await show('ioc');$('iq').value=v;lookup(v)}
+async function lookup(v){v=(v||'').trim();if(!v)return;$('iq').value=v;const d=await api('/api/indicators/search?q='+encodeURIComponent(v)),r=$('ioc_res');
+ r.innerHTML=d.error?`⚠️ <b>${esc(d.error)}</b><br><small>${esc(d.validation_notes||'')}</small>`:d.known_in_demo_dataset?`<b>${esc(d.normalized_value)}</b> · ${esc(d.indicator_type)}<table style="margin-top:8px"><tbody><tr><td>In demo dataset</td><td><b>YES</b></td></tr><tr><td>Risk</td><td><b>${d.risk}/100</b> ${badge(d.severity)}</td></tr><tr><td>Confidence</td><td>${d.confidence}%</td></tr><tr><td>Category</td><td>${nice(d.category)}</td></tr><tr><td>Status</td><td>${nice(d.status)}</td></tr><tr><td>First / last seen</td><td>${esc(d.first_seen.slice(0,10))} → ${esc(d.last_seen.slice(0,10))}</td></tr><tr><td>Observations</td><td>${d.observations}</td></tr></tbody></table><p><a style="color:#4cc9f0" href="#" onclick="detail('${esc(d.threat_id)}');return false">Open ${esc(d.threat_id)} investigation view →</a></p><small>Lookup only — nothing was contacted. High risk ≠ confirmed compromise.</small>`:`<b>${esc(d.normalized_value)}</b> (${esc(d.indicator_type)}) is a valid indicator but is <b>not</b> in the demo dataset. No connection was made.`}
+async function detail(id){const t=await api('/api/threats/'+id);$('mc').innerHTML=`<h3>${esc(t.threat_id)} · ${esc(t.threat_name)}</h3>${badge(t.severity)} <b>Risk ${t.risk_score}</b> · Confidence ${t.confidence_score}% · Source ${esc(t.source_name)} (reliability ${esc(t.source_reliability)}) · ${nice(t.status)}
+ <p>${esc(t.description)}</p><p><b>${esc(t.indicator_type)}:</b> ${esc(t.indicator_value)}<br><b>First seen</b> ${esc(t.first_seen)} · <b>Last seen</b> ${esc(t.last_seen)}<br><b>ATT&amp;CK:</b> ${t.technique?esc(t.tactic+' → '+t.technique+' ('+t.technique_id+')'):'Not mapped — insufficient evidence'}${t.cve_id?'<br><b>CVE:</b> '+esc(t.cve_id):''}</p>
+ <h3>Timeline</h3>${t.timeline.map(x=>`<div class="note">● ${esc(x.step)} — ${esc(x.at)}</div>`).join('')}<h3>Related indicators (same synthetic campaign — correlation ≠ attribution)</h3>${t.related_indicators.map(r=>`<div class="note">${esc(r.indicator_type)} · ${esc(r.indicator_value)} · risk ${r.risk_score}</div>`).join('')||'<div class="note">None</div>'}
+ <h3>Recommended defensive actions</h3><ul>${t.recommended_actions.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><h3>Analyst notes</h3><div>${t.notes.map(n=>`<div class="note">📝 ${n.note}</div>`).join('')||'<div class="note">No notes yet</div>'}</div>
+ <div class="tools" style="margin-top:8px"><input id="nt" style="flex:1" placeholder="Add analyst note"><button onclick="addNote('${esc(t.threat_id)}')">Save</button><button onclick="$('modal').style.display='none'">Close</button></div>`;$('modal').style.display='flex'}
+async function addNote(id){const n=$('nt').value;if(!n)return;await api(`/api/threats/${id}/notes`,{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':KEY},body:JSON.stringify({note:n})});detail(id)}
+let QS=[],AN={},qi=0;async function startQuiz(){QS=await api('/api/quiz');AN={};qi=0;showQ()}
+function showQ(){const q=QS[qi];$('qz').innerHTML=`<div class="bar"><i style="width:${100*qi/QS.length}%"></i></div><p class="note">Question ${qi+1} of ${QS.length} · ${esc(q.category)}</p><p><b>${esc(q.q)}</b></p>${q.options.map((o,i)=>`<button class="opt" onclick="ans(${q.id},${i})">${esc(o)}</button>`).join('')}`}
+async function ans(id,i){AN[id]=i;if(++qi<QS.length)return showQ();const r=await api('/api/quiz/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answers:AN})});
+ const wrong=r.review.filter(x=>!x.correct);$('qz').innerHTML=`<h2 style="margin:0">${r.overall_score}/100 — ${esc(r.level)}</h2><p class="note">${esc(r.note)}</p><h3>Category scores &amp; recommendations</h3><table><thead><tr><th>Category</th><th>Score</th><th>Recommendation</th></tr></thead><tbody>${r.recommendations.map(x=>`<tr><td>${esc(x.category)}</td><td>${x.score}%</td><td>${esc(x.recommendation)}</td></tr>`).join('')}</tbody></table>
+ <h3>Review: ${wrong.length} to revisit</h3><div class="scr" style="max-height:200px">${wrong.map(x=>`<div class="note" style="margin-bottom:6px"><b>Q${x.id}:</b> ${esc(QS.find(q=>q.id===x.id).q)}<br>→ ${esc(x.why)}</div>`).join('')||'<div class="note">All correct!</div>'}</div><button style="margin-top:8px" onclick="startQuiz()">Retake quiz</button>`}
+show((location.hash||'#overview').slice(1).replace(/[^a-z]/g,'')||'overview');
+</script></body></html>

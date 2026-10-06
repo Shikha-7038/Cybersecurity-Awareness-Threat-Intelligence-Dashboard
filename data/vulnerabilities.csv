@@ -1,0 +1,61 @@
+cve_id,product_category,severity,cvss_score,published_date,patch_available,exploitation_status_demo,asset_criticality,exposure,description
+CVE-2099-10001,Database,LOW,3.5,2026-06-08,True,exploited_in_demo,5,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10002,Router Firmware,CRITICAL,9.5,2026-08-31,True,none_observed,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10003,Router Firmware,CRITICAL,9.8,2026-07-06,True,exploited_in_demo,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10004,Cloud SDK,CRITICAL,9.8,2026-07-11,True,poc_discussed,1,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10005,Office Suite,CRITICAL,9.1,2026-08-22,True,poc_discussed,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10006,VPN Gateway,HIGH,7.8,2026-08-07,True,exploited_in_demo,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10007,Cloud SDK,HIGH,7.8,2026-07-26,False,none_observed,2,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10008,Office Suite,CRITICAL,9.7,2026-08-07,True,exploited_in_demo,2,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10009,Browser,CRITICAL,9.5,2026-07-21,True,poc_discussed,5,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10010,Database,HIGH,7.9,2026-08-24,False,none_observed,1,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10011,Router Firmware,CRITICAL,9.5,2026-08-15,False,poc_discussed,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10012,Web Server,CRITICAL,9.8,2026-06-16,True,exploited_in_demo,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10013,Email Platform,HIGH,8.5,2026-08-07,False,exploited_in_demo,1,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10014,CMS Plugin,CRITICAL,9.1,2026-09-12,True,none_observed,1,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10015,Database,CRITICAL,9.8,2026-08-30,True,none_observed,5,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10016,Office Suite,HIGH,8.2,2026-07-19,False,exploited_in_demo,2,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10017,Cloud SDK,CRITICAL,10.0,2026-08-24,True,none_observed,2,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10018,Database,CRITICAL,9.8,2026-08-13,True,none_observed,4,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10019,Web Server,LOW,3.2,2026-07-27,True,poc_discussed,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10020,Email Platform,CRITICAL,9.5,2026-09-11,True,none_observed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10021,Cloud SDK,MEDIUM,4.3,2026-08-10,True,none_observed,1,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10022,Database,CRITICAL,9.5,2026-07-31,False,none_observed,2,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10023,Email Platform,MEDIUM,5.1,2026-07-08,False,exploited_in_demo,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10024,OS Kernel,MEDIUM,5.1,2026-09-08,True,exploited_in_demo,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10025,Cloud SDK,MEDIUM,4.8,2026-06-21,True,poc_discussed,1,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10026,OS Kernel,CRITICAL,9.9,2026-08-09,True,none_observed,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10027,Database,CRITICAL,9.7,2026-09-16,True,poc_discussed,5,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10028,Cloud SDK,CRITICAL,9.6,2026-09-14,True,poc_discussed,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10029,Email Platform,CRITICAL,9.8,2026-07-10,True,poc_discussed,3,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10030,Browser,HIGH,7.6,2026-09-22,True,poc_discussed,4,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10031,Cloud SDK,LOW,3.2,2026-07-19,False,poc_discussed,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10032,OS Kernel,HIGH,8.2,2026-07-15,True,exploited_in_demo,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10033,Browser,CRITICAL,9.9,2026-08-12,True,poc_discussed,1,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10034,Browser,HIGH,8.7,2026-06-29,False,none_observed,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10035,Database,HIGH,8.7,2026-07-21,True,none_observed,2,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10036,Browser,CRITICAL,9.5,2026-09-27,True,none_observed,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10037,Email Platform,MEDIUM,4.5,2026-09-07,True,exploited_in_demo,3,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10038,Browser,HIGH,7.0,2026-08-21,True,none_observed,2,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10039,OS Kernel,HIGH,8.6,2026-07-11,True,poc_discussed,1,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10040,Database,MEDIUM,6.3,2026-07-06,True,none_observed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10041,OS Kernel,HIGH,8.8,2026-06-12,True,poc_discussed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10042,Office Suite,CRITICAL,9.9,2026-08-22,True,exploited_in_demo,2,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10043,CMS Plugin,CRITICAL,9.8,2026-06-21,True,none_observed,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10044,VPN Gateway,CRITICAL,9.1,2026-06-07,True,none_observed,5,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10045,Email Platform,CRITICAL,9.4,2026-07-27,True,none_observed,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10046,Database,CRITICAL,9.7,2026-09-10,False,poc_discussed,5,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10047,Web Server,CRITICAL,9.2,2026-06-14,True,exploited_in_demo,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10048,Email Platform,CRITICAL,10.0,2026-06-30,True,none_observed,3,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10049,Web Server,CRITICAL,9.1,2026-06-15,True,poc_discussed,3,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10050,OS Kernel,MEDIUM,5.1,2026-07-30,True,none_observed,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10051,VPN Gateway,HIGH,8.2,2026-07-21,True,poc_discussed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10052,Browser,HIGH,7.1,2026-08-28,False,none_observed,2,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10053,Router Firmware,CRITICAL,9.3,2026-08-10,True,none_observed,4,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10054,CMS Plugin,HIGH,8.7,2026-06-16,False,exploited_in_demo,2,internet,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10055,Browser,HIGH,8.1,2026-08-19,False,poc_discussed,3,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10056,Email Platform,HIGH,8.0,2026-07-21,False,poc_discussed,3,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10057,OS Kernel,CRITICAL,9.0,2026-07-06,True,none_observed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10058,Cloud SDK,CRITICAL,9.7,2026-09-04,True,poc_discussed,1,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10059,Email Platform,HIGH,7.0,2026-08-19,True,exploited_in_demo,4,internal,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.
+CVE-2099-10060,Browser,MEDIUM,4.3,2026-08-20,True,none_observed,4,isolated,SYNTHETIC / DEMO ONLY vulnerability record for awareness. No exploit details.

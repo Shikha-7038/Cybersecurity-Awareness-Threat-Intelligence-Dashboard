@@ -1,0 +1,522 @@
+[
+ {
+  "id": 1,
+  "category": "Phishing",
+  "q": "An unexpected message urgently asks you to verify your password. What should you do?",
+  "options": [
+   "Click the link immediately",
+   "Reply with your password",
+   "Verify through an official, trusted channel",
+   "Forward your credentials to a colleague"
+  ],
+  "answer": 2,
+  "why": "Urgency + credential requests are classic phishing signs. Go to the official site yourself or call the helpdesk."
+ },
+ {
+  "id": 2,
+  "category": "Phishing",
+  "q": "Which is the strongest warning sign of a phishing email?",
+  "options": [
+   "It has your name",
+   "Sender domain looks slightly different from the real one and demands payment today",
+   "It was sent on a Monday",
+   "It is long"
+  ],
+  "answer": 1,
+  "why": "Look-alike sender domains combined with urgent payment requests are high-risk signs."
+ },
+ {
+  "id": 3,
+  "category": "Passwords",
+  "q": "Which password approach is generally safest?",
+  "options": [
+   "One strong password reused everywhere",
+   "A long unique passphrase per account stored in a password manager",
+   "Your birthday plus '!'",
+   "Changing one letter each time"
+  ],
+  "answer": 1,
+  "why": "Unique long passphrases limit the damage of reuse; a manager makes this practical."
+ },
+ {
+  "id": 4,
+  "category": "MFA",
+  "q": "Why enable MFA?",
+  "options": [
+   "It makes passwords unnecessary",
+   "A stolen password alone is not enough to sign in",
+   "It speeds up login",
+   "It blocks all phishing"
+  ],
+  "answer": 1,
+  "why": "MFA adds a second factor. Phishing-resistant options like passkeys are even better."
+ },
+ {
+  "id": 5,
+  "category": "Social Engineering",
+  "q": "A caller claims to be IT and asks for your MFA code. You should:",
+  "options": [
+   "Read it out quickly",
+   "Refuse and report; IT never needs your code",
+   "Give half of it",
+   "Ask them to email it"
+  ],
+  "answer": 1,
+  "why": "Legitimate staff never need your one-time codes. Report the attempt."
+ },
+ {
+  "id": 6,
+  "category": "Safe Browsing",
+  "q": "Before entering a password on a site you should check:",
+  "options": [
+   "The site's colour scheme",
+   "That the domain is exactly the one you expect",
+   "How many ads it has",
+   "Nothing, padlock means safe"
+  ],
+  "answer": 1,
+  "why": "A padlock only means encrypted traffic, not a trustworthy site. Check the domain."
+ },
+ {
+  "id": 7,
+  "category": "Ransomware",
+  "q": "Which practice best reduces ransomware impact?",
+  "options": [
+   "Paying quickly",
+   "Offline/immutable backups that are tested regularly",
+   "Disabling updates",
+   "Sharing admin accounts"
+  ],
+  "answer": 1,
+  "why": "Tested backups let you recover without paying; patching and least privilege reduce the chance of infection."
+ },
+ {
+  "id": 8,
+  "category": "Privacy",
+  "q": "Which is the best habit for sharing personal data?",
+  "options": [
+   "Share everything to get discounts",
+   "Share only what is needed and review app permissions",
+   "Post travel plans publicly",
+   "Reuse one email for all"
+  ],
+  "answer": 1,
+  "why": "Data minimisation reduces exposure if a service is breached."
+ },
+ {
+  "id": 9,
+  "category": "Wi-Fi",
+  "q": "On public Wi-Fi you should:",
+  "options": [
+   "Do banking without precautions",
+   "Avoid sensitive logins or use a trusted VPN/mobile data",
+   "Auto-join every open network",
+   "Disable updates"
+  ],
+  "answer": 1,
+  "why": "Open networks can be monitored or spoofed; prefer trusted connections."
+ },
+ {
+  "id": 10,
+  "category": "Incident Reporting",
+  "q": "You clicked a suspicious link. What now?",
+  "options": [
+   "Hide it",
+   "Report to security/IT promptly",
+   "Delete the browser",
+   "Wait a week"
+  ],
+  "answer": 1,
+  "why": "Early reporting lets the security team contain issues quickly. Reporting is never punished in a good security culture."
+ },
+ {
+  "category": "Phishing",
+  "q": "An email has an unexpected attachment from an unknown sender. Best action?",
+  "options": [
+   "Open it to check",
+   "Report it and do not open it",
+   "Forward to friends",
+   "Reply asking what it is"
+  ],
+  "answer": 1,
+  "why": "Unexpected attachments are a common delivery route; report instead of opening.",
+  "id": 11
+ },
+ {
+  "category": "Phishing",
+  "q": "A message includes a QR code asking you to sign in. What is safest?",
+  "options": [
+   "Scan and sign in",
+   "Navigate to the service yourself via its official app/site",
+   "Share the QR code",
+   "Scan on a work laptop"
+  ],
+  "answer": 1,
+  "why": "QR codes hide the destination; go to the official site directly.",
+  "id": 12
+ },
+ {
+  "category": "Phishing",
+  "q": "A 'CEO' emails asking for an urgent gift-card purchase. This is most likely:",
+  "options": [
+   "A normal request",
+   "Impersonation / payment-request fraud",
+   "A system update",
+   "A survey"
+  ],
+  "answer": 1,
+  "why": "Urgent payment requests from executives should be verified through a second channel.",
+  "id": 13
+ },
+ {
+  "category": "Passwords",
+  "q": "What is a password manager mainly good for?",
+  "options": [
+   "Sharing passwords by email",
+   "Creating and storing unique strong passwords",
+   "Skipping MFA",
+   "Making passwords shorter"
+  ],
+  "answer": 1,
+  "why": "It lets you use a unique password everywhere without memorising them.",
+  "id": 14
+ },
+ {
+  "category": "Passwords",
+  "q": "Why is password reuse risky?",
+  "options": [
+   "It isn't",
+   "One breach can unlock many accounts",
+   "It slows logins",
+   "It breaks MFA"
+  ],
+  "answer": 1,
+  "why": "Attackers try leaked credentials on other services (credential stuffing).",
+  "id": 15
+ },
+ {
+  "category": "Passwords",
+  "q": "Which is the stronger secret?",
+  "options": [
+   "P@ssw0rd!",
+   "correct-horse-battery-staple-lantern",
+   "12345678",
+   "your pet's name"
+  ],
+  "answer": 1,
+  "why": "Length and unpredictability beat clever substitutions.",
+  "id": 16
+ },
+ {
+  "category": "MFA",
+  "q": "Which MFA method is generally most phishing-resistant?",
+  "options": [
+   "SMS code",
+   "Passkey / security key (WebAuthn)",
+   "Emailed code",
+   "Security question"
+  ],
+  "answer": 1,
+  "why": "WebAuthn credentials are bound to the real site, so fake pages can't reuse them.",
+  "id": 17
+ },
+ {
+  "category": "MFA",
+  "q": "You get repeated MFA prompts you did not trigger. You should:",
+  "options": [
+   "Approve one to stop them",
+   "Deny them, change your password and report it",
+   "Ignore them forever",
+   "Share the code with IT"
+  ],
+  "answer": 1,
+  "why": "MFA-fatigue attempts mean your password may be exposed.",
+  "id": 18
+ },
+ {
+  "category": "MFA",
+  "q": "Strong password + MFA compared with password alone is:",
+  "options": [
+   "Equally safe",
+   "Generally safer",
+   "Less safe",
+   "Illegal"
+  ],
+  "answer": 1,
+  "why": "A second factor blocks many account takeovers even if the password leaks.",
+  "id": 19
+ },
+ {
+  "category": "Social Engineering",
+  "q": "A stranger asks to follow you into a secure door ('tailgating'). You should:",
+  "options": [
+   "Hold the door",
+   "Politely ask them to badge in or contact security",
+   "Give them your badge",
+   "Ignore it"
+  ],
+  "answer": 1,
+  "why": "Physical access should be authenticated for everyone.",
+  "id": 20
+ },
+ {
+  "category": "Social Engineering",
+  "q": "Which is a pretexting red flag?",
+  "options": [
+   "Request with a plausible story that bypasses normal process",
+   "Ticket via the helpdesk portal",
+   "Scheduled maintenance notice",
+   "A signed policy"
+  ],
+  "answer": 0,
+  "why": "Attackers invent stories to make you skip verification.",
+  "id": 21
+ },
+ {
+  "category": "Safe Browsing",
+  "q": "A pop-up says your device is infected and to call a number. You should:",
+  "options": [
+   "Call it",
+   "Close the tab/browser and run your trusted security tool",
+   "Pay for the fix",
+   "Install the offered tool"
+  ],
+  "answer": 1,
+  "why": "Scareware relies on panic; close it and use trusted tools.",
+  "id": 22
+ },
+ {
+  "category": "Safe Browsing",
+  "q": "Safest place to download software:",
+  "options": [
+   "Any search result",
+   "The vendor's official site or store",
+   "A forum link",
+   "An email attachment"
+  ],
+  "answer": 1,
+  "why": "Unofficial sources often bundle unwanted or harmful software.",
+  "id": 23
+ },
+ {
+  "category": "Ransomware",
+  "q": "Why keep backups offline or immutable?",
+  "options": [
+   "To save space",
+   "So ransomware cannot encrypt or delete them",
+   "To look professional",
+   "They load faster"
+  ],
+  "answer": 1,
+  "why": "Backups reachable from the network can also be encrypted.",
+  "id": 24
+ },
+ {
+  "category": "Ransomware",
+  "q": "First step if you see files suddenly renamed/encrypted?",
+  "options": [
+   "Keep working",
+   "Disconnect from the network if advised and report immediately",
+   "Pay the ransom",
+   "Reboot repeatedly"
+  ],
+  "answer": 1,
+  "why": "Fast reporting limits spread; follow your incident procedure.",
+  "id": 25
+ },
+ {
+  "category": "Privacy",
+  "q": "Which app permission request deserves a second look?",
+  "options": [
+   "Flashlight app asking for contacts",
+   "Maps asking for location",
+   "Camera app asking for camera",
+   "Music app asking for audio"
+  ],
+  "answer": 0,
+  "why": "Permissions should match what the app needs to do.",
+  "id": 26
+ },
+ {
+  "category": "Privacy",
+  "q": "Before posting online you should think about:",
+  "options": [
+   "Only the likes",
+   "What the post reveals (location, routine, workplace)",
+   "Hashtags",
+   "Font"
+  ],
+  "answer": 1,
+  "why": "Oversharing helps social-engineering and stalking.",
+  "id": 27
+ },
+ {
+  "category": "Wi-Fi",
+  "q": "Which is safer at a cafe?",
+  "options": [
+   "Auto-connecting to 'Free_WiFi'",
+   "Using mobile data or a trusted VPN for sensitive tasks",
+   "Sharing files openly",
+   "Disabling HTTPS"
+  ],
+  "answer": 1,
+  "why": "Open networks can be spoofed ('evil twin').",
+  "id": 28
+ },
+ {
+  "category": "Wi-Fi",
+  "q": "For home Wi-Fi you should:",
+  "options": [
+   "Keep the default router password",
+   "Use WPA2/WPA3 and change defaults",
+   "Disable the password",
+   "Share it publicly"
+  ],
+  "answer": 1,
+  "why": "Default credentials are widely known.",
+  "id": 29
+ },
+ {
+  "category": "Mobile Security",
+  "q": "Why install OS updates on your phone?",
+  "options": [
+   "For new emojis only",
+   "They patch security vulnerabilities",
+   "They drain battery",
+   "They are optional"
+  ],
+  "answer": 1,
+  "why": "Updates fix known flaws attackers target.",
+  "id": 30
+ },
+ {
+  "category": "Mobile Security",
+  "q": "Best source of mobile apps:",
+  "options": [
+   "Links in text messages",
+   "Official app stores",
+   "Random websites",
+   "Chat groups"
+  ],
+  "answer": 1,
+  "why": "Official stores add vetting; sideloading raises risk.",
+  "id": 31
+ },
+ {
+  "category": "Mobile Security",
+  "q": "If your phone is lost, first:",
+  "options": [
+   "Wait",
+   "Use remote lock/wipe and report it",
+   "Post about it",
+   "Buy a new one only"
+  ],
+  "answer": 1,
+  "why": "Remote lock/wipe protects data; report to IT.",
+  "id": 32
+ },
+ {
+  "category": "Incident Reporting",
+  "q": "Who should you report a suspected phishing email to?",
+  "options": [
+   "Nobody",
+   "Your security/IT team via the official channel",
+   "The sender",
+   "Social media"
+  ],
+  "answer": 1,
+  "why": "Reports help protect others and improve detection.",
+  "id": 33
+ },
+ {
+  "category": "Incident Reporting",
+  "q": "A good incident report includes:",
+  "options": [
+   "Blame",
+   "What happened, when, and what you did",
+   "A guess about the attacker",
+   "Nothing until certain"
+  ],
+  "answer": 1,
+  "why": "Facts and timing help responders; certainty is not required.",
+  "id": 34
+ },
+ {
+  "category": "Incident Reporting",
+  "q": "Why report even if you're unsure?",
+  "options": [
+   "It's a rule only",
+   "Early reports prevent small issues becoming incidents",
+   "To get a reward",
+   "It isn't needed"
+  ],
+  "answer": 1,
+  "why": "Speed matters more than being right.",
+  "id": 35
+ },
+ {
+  "category": "Phishing",
+  "q": "Hovering over a link shows a different domain than the text. This suggests:",
+  "options": [
+   "Nothing",
+   "Possible phishing - don't click",
+   "A faster link",
+   "A newsletter"
+  ],
+  "answer": 1,
+  "why": "Mismatched link targets are a warning sign.",
+  "id": 36
+ },
+ {
+  "category": "Social Engineering",
+  "q": "A 'vendor' asks you to change bank details by email. Best step?",
+  "options": [
+   "Do it",
+   "Verify with a known phone number before changing anything",
+   "Reply with details",
+   "Ignore forever"
+  ],
+  "answer": 1,
+  "why": "Out-of-band verification stops payment-redirection fraud.",
+  "id": 37
+ },
+ {
+  "category": "Safe Browsing",
+  "q": "A padlock in the address bar means:",
+  "options": [
+   "The site is trustworthy",
+   "The connection is encrypted",
+   "The site is safe to enter passwords",
+   "The site is government-approved"
+  ],
+  "answer": 1,
+  "why": "Encryption doesn't prove the site is honest.",
+  "id": 38
+ },
+ {
+  "category": "Privacy",
+  "q": "Why use different emails/aliases for different services?",
+  "options": [
+   "Looks cool",
+   "Limits tracking and breach impact",
+   "Required by law",
+   "Faster login"
+  ],
+  "answer": 1,
+  "why": "Compartmentalising reduces linkage.",
+  "id": 39
+ },
+ {
+  "category": "Ransomware",
+  "q": "Which control helps most by limiting damage once an account is compromised?",
+  "options": [
+   "Least privilege",
+   "Shared admin accounts",
+   "Disabling logging",
+   "Open file shares"
+  ],
+  "answer": 0,
+  "why": "Users and services should only have access they need.",
+  "id": 40
+ }
+]

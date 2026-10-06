@@ -1,0 +1,77 @@
+[
+ {
+  "module_id": 1,
+  "title": "Phishing Awareness",
+  "tip": "Check sender, urgency, links and attachments before acting. Report, don't forward."
+ },
+ {
+  "module_id": 2,
+  "title": "Password Security",
+  "tip": "Use long unique passphrases and a password manager."
+ },
+ {
+  "module_id": 3,
+  "title": "MFA",
+  "tip": "Prefer app or passkey MFA; never share codes."
+ },
+ {
+  "module_id": 4,
+  "title": "Social Engineering",
+  "tip": "Verify unusual requests via a second channel."
+ },
+ {
+  "module_id": 5,
+  "title": "Safe Browsing",
+  "tip": "Check the exact domain; avoid unexpected downloads."
+ },
+ {
+  "module_id": 6,
+  "title": "Secure Wi-Fi",
+  "tip": "Avoid sensitive logins on open networks."
+ },
+ {
+  "module_id": 7,
+  "title": "Software Updates",
+  "tip": "Turn on auto-update for OS, browser and apps."
+ },
+ {
+  "module_id": 8,
+  "title": "Ransomware Awareness",
+  "tip": "Keep tested offline backups; patch; least privilege."
+ },
+ {
+  "module_id": 9,
+  "title": "USB / Removable Media",
+  "tip": "Never plug in unknown drives."
+ },
+ {
+  "module_id": 10,
+  "title": "Data Privacy",
+  "tip": "Share the minimum; review permissions."
+ },
+ {
+  "module_id": 11,
+  "title": "Mobile Security",
+  "tip": "Install apps only from official stores; lock your device."
+ },
+ {
+  "module_id": 12,
+  "title": "Remote Work Security",
+  "tip": "Use company VPN/SSO; lock your screen."
+ },
+ {
+  "module_id": 13,
+  "title": "Cloud Account Security",
+  "tip": "Enable MFA and review sharing links."
+ },
+ {
+  "module_id": 14,
+  "title": "Incident Reporting",
+  "tip": "Report early; speed matters more than blame."
+ },
+ {
+  "module_id": 15,
+  "title": "AI-Enabled Scam Awareness",
+  "tip": "Voice/video can be faked - verify requests out-of-band."
+ }
+]
